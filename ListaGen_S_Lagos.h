@@ -13,7 +13,7 @@
 #define LISTAGEN_S_LAGOS_H
 
 #include <string.h>
-#include "Pilha_ListaGen_S_Lagos.h"
+
 
 #define INFO_SIZE 8
 
@@ -34,6 +34,8 @@ struct listaGen {
 };
 
 typedef struct listaGen ListaGen;
+
+#include "Pilha_ListaGen_S_Lagos.h"
 
 ListaGen *CriaAtomo(char *info) {
 
