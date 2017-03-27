@@ -13,6 +13,7 @@
 #define LISTAGEN_S_LAGOS_H
 
 #include <string.h>
+#include "Pilha_ListaGen_S_Lagos.h"
 
 #define INFO_SIZE 8
 
@@ -63,6 +64,31 @@ ListaGen *Head(ListaGen *Lista) {
 ListaGen *Tail(ListaGen *Lista) {
 
     return Lista->no.lista.tail;
+}
+
+void destruir_iterativo(ListaGen *Lista) {
+    ListaGen *aux;
+    Pilha *pilha;
+    init(&pilha);
+    Push(&pilha, Lista);
+    while (!isEmpty(pilha)) {
+        if (!isNula(Lista)) {
+            Pop(&pilha, Lista);
+        }
+        while (!isNula(Lista)&&!isAtomo(Lista)) {
+            Push(&pilha, Lista);
+            Lista = Head(Lista);
+        }
+        if (isAtomo(Lista))
+            free(Lista);
+        Pop(&pilha, Lista);
+        aux = Lista;
+        Lista = Tail(Lista);
+        if (isNula(Lista)) {
+            Pop(&pilha, Lista);
+            free(aux);
+        }
+    }
 }
 
 #endif /* LISTAGEN_S_LAGOS_H */

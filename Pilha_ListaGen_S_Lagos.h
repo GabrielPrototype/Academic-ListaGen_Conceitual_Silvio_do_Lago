@@ -10,7 +10,7 @@
 #define PILHA_LISTAGEN_S_LAGOS_H
 
 #include <stddef.h>
-#include "Pilha_ListaGen_S_Lagos.h"
+#include "ListaGen_S_Lagos.h"
 
 struct pilha {
     ListaGen *Lista;
