@@ -4,9 +4,6 @@
 
 /* 
  * File:   ListaGen_S_Lagos.h
- * Author: titan
- *
- * Created on 27 de Março de 2017, 06:50
  */
 
 #ifndef LISTAGEN_S_LAGOS_H
@@ -45,8 +42,7 @@ ListaGen *CriaAtomo(char *info) {
     return Lst;
 };
 
-
-char isNula(ListaGen *Lista){
+char isNula(ListaGen *Lista) {
     return Lista == NULL;
 };
 
@@ -56,11 +52,11 @@ char isAtomo(ListaGen *Lista) {
 };
 
 ListaGen *Head(ListaGen *Lista) {
-    if(isNula(Lista) || isAtomo(Lista))
+    if (isNula(Lista) || isAtomo(Lista))
         return NULL; //Uma lista Nula ou Atomo não pode ser Head.
-    
-    return Lista->no.lista.head;  //finalmente se passar pelo criterio de não
-                                    //ser nula e não ser atomo, ela é Head
+
+    return Lista->no.lista.head; //finalmente se passar pelo criterio de não
+    //ser nula e não ser atomo, ela é Head
 };
 
 ListaGen *Tail(ListaGen *Lista) {
@@ -68,17 +64,17 @@ ListaGen *Tail(ListaGen *Lista) {
     return Lista->no.lista.tail;
 }
 
-void destruir_recursivo(ListaGen **Lista){
-	if(!isNula(*Lista)){
-		if(isAtomo(*Lista))
-			free(*Lista);
-		else{
-			destruir_recursivo(&(*Lista)->no.lista.head);
-			destruir_recursivo(&(*Lista)->no.lista.tail);
-			free(*Lista);
-			*Lista = NULL;
-		}
-	}
+void destruir_recursivo(ListaGen **Lista) {
+    if (!isNula(*Lista)) {
+        if (isAtomo(*Lista))
+            free(*Lista);
+        else {
+            destruir_recursivo(&(*Lista)->no.lista.head);
+            destruir_recursivo(&(*Lista)->no.lista.tail);
+            free(*Lista);
+            *Lista = NULL;
+        }
+    }
 };
 
 void destruir_iterativo(ListaGen *Lista) {
@@ -88,7 +84,7 @@ void destruir_iterativo(ListaGen *Lista) {
     Push(&pilha, Lista);
     while (!isEmpty(pilha)) {
         if (!isNula(Lista)) {
-            Pop(&pilha, Lista);
+            Pop(&pilha, &Lista);
         }
         while (!isNula(Lista)&&!isAtomo(Lista)) {
             Push(&pilha, Lista);
@@ -96,14 +92,50 @@ void destruir_iterativo(ListaGen *Lista) {
         }
         if (isAtomo(Lista))
             free(Lista);
-        Pop(&pilha, Lista);
+        Pop(&pilha, &Lista);
         aux = Lista;
         Lista = Tail(Lista);
         if (isNula(Lista)) {
-            Pop(&pilha, Lista);
+            Pop(&pilha, &Lista);
             free(aux);
         }
     }
+}
+
+int calcula_comprimento(ListaGen *Lista) {
+    int Cont = 0;
+
+    while (!isNula(Lista)) {
+        Cont++;
+        Lista = Tail(Lista);
+    }
+
+    return Cont;
+}
+
+int calcula_profundidade(ListaGen *List) {
+    Pilha *pilha;
+    init(&pilha);
+    int Cont = 0, Andar = 0;
+
+    while (!isEmpty(pilha)) {
+        if (!isNula(List)) {
+            Pop(&pilha, &List);
+            while (!isNula(List) && !isAtomo(List)) {
+                Push(&pilha, List);
+                List = Head(List);
+                Andar++;
+                if (Cont < Andar)
+                    Cont = Andar;
+            }
+        }
+        Pop(&pilha, &List);
+        Andar--;
+        List = Tail(List);
+        if (!isNula(List))
+            Push(&pilha, List);
+    }
+    return Cont;
 }
 
 #endif /* LISTAGEN_S_LAGOS_H */

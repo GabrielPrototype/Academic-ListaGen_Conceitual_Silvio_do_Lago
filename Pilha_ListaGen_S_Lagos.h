@@ -21,24 +21,24 @@ typedef struct pilha Pilha;
 
 void init(Pilha **P) {
     *P = NULL;
-}
+};
 
 char isEmpty(Pilha *P) {
     return P == NULL;
-}
+};
 
 ListaGen* Top(Pilha *P) {
     if (!isEmpty(P))
         return P->Lista;
     return NULL;
-}
+};
 
 void Push(Pilha **P, ListaGen *L) {
     Pilha *nova = (Pilha*) malloc(sizeof (Pilha));
     nova->Lista = L;
     nova->ant = *P;
     *P = nova;
-}
+};
 
 void Pop(Pilha **P, ListaGen **L) {
     Pilha *aux;
@@ -48,7 +48,7 @@ void Pop(Pilha **P, ListaGen **L) {
         *P = (*P)->ant;
         free(aux);
     } else *L = NULL;
-}
+};
 
 #endif /* PILHA_LISTAGEN_S_LAGOS_H */
 
