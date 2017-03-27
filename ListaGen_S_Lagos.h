@@ -68,6 +68,19 @@ ListaGen *Tail(ListaGen *Lista) {
     return Lista->no.lista.tail;
 }
 
+void destruir_recursivo(ListaGen **Lista){
+	if(!isNula(*Lista)){
+		if(isAtomo(*Lista))
+			free(*Lista);
+		else{
+			destruir_recursivo(&(*Lista)->no.lista.head);
+			destruir_recursivo(&(*Lista)->no.lista.tail);
+			free(*Lista);
+			*Lista = NULL;
+		}
+	}
+};
+
 void destruir_iterativo(ListaGen *Lista) {
     ListaGen *aux;
     Pilha *pilha;

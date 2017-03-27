@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=ListaGen_Conceitual_S_Lago
+PROJECTNAME=Academic-ListaGen_Conceitual_Silvio_do_Lago
 
 # Active Configuration
 DEFAULTCONF=Debug
