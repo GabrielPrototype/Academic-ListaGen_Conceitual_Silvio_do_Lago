@@ -138,7 +138,7 @@ int calcula_profundidade(ListaGen *List) {
     Pilha *pilha;
     init(&pilha);
     int Cont = 0, Andar = 0;
-
+    Push(&pilha,List);
     while (!isEmpty(pilha)) {
         if (!isNula(List)) {
             Pop(&pilha, &List);
@@ -157,6 +157,15 @@ int calcula_profundidade(ListaGen *List) {
             Push(&pilha, List);
     }
     return Cont;
+}
+
+ListaGen *Duplica (ListaGen *Lista){
+	if(isNula(Lista))
+		return NULL;
+	if(isAtomo(Lista))
+		return (CriaAtomo(Lista->no.info));
+		
+	return Cons(Duplica(Head(Lista)),Duplica(Tail(Lista)));
 }
 
 #endif /* LISTAGEN_S_LAGOS_H */

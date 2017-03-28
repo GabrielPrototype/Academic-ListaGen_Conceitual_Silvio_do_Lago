@@ -48,20 +48,47 @@ void insere_seq_vazia(ListaGen **Lista) {
     
 
     
-    printf("\n\n\n");
     
-    Exibe(*Lista);
     
-    printf("\n\n\n");
-   
-    Exibe_Atomo(*Lista);
+    
 };
 
 void teste_listaGen(){
 
-    ListaGen *Lista01;
+    ListaGen *Lista01, *Lista02;
     
     insere_seq_vazia(&Lista01);
-
+    
+    printf("\n\n\n");
+    
+    Exibe(Lista01);
+    
+    printf("\n\n\n");
+   
+    Exibe_Atomo(Lista01);
+    printf("\n\n\n");
+    
+    printf("Comprimento: %d", calcula_comprimento(Lista01));
+    
+    printf("\n\n\n");
+    
+    printf("Profundidade: %d", calcula_profundidade(Lista01));
+    
+    Lista02 = Duplica(Lista01);
+    
+    printf("\n\n\n");
+    
+    Exibe(Lista02);
+    
+    printf("\n\n\n");
+   
+    Exibe_Atomo(Lista02);
+    printf("\n\n\n");
+    
+    printf("Comprimento: %d", calcula_comprimento(Lista02));
+    
+    printf("\n\n\n");
+    
+    printf("Profundidade: %d", calcula_profundidade(Lista02));
 
 }
