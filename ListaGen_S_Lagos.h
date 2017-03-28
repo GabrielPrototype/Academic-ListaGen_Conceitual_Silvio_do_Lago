@@ -42,13 +42,23 @@ ListaGen *CriaAtomo(char *info) {
     return Lst;
 };
 
+ListaGen *CriaNo() {
+
+    ListaGen *Lst = (ListaGen*) malloc(sizeof (ListaGen));
+    Lst->terminal = 0;
+    return Lst;
+};
+
 char isNula(ListaGen *Lista) {
     return Lista == NULL;
 };
 
 char isAtomo(ListaGen *Lista) {
-
-    return Lista->terminal == 1;
+    
+    if(!isNula(Lista))
+        return Lista->terminal == 1;
+    else
+        return 0;
 };
 
 ListaGen *Head(ListaGen *Lista) {
@@ -62,6 +72,17 @@ ListaGen *Head(ListaGen *Lista) {
 ListaGen *Tail(ListaGen *Lista) {
 
     return Lista->no.lista.tail;
+}
+
+ListaGen* Cons(ListaGen *head, ListaGen *tail) {
+    if (!isAtomo(tail)) {
+        ListaGen *L = (ListaGen*) malloc(sizeof (ListaGen));
+        L->terminal = 0;
+        L->no.lista.head = head;
+        L->no.lista.tail = tail;
+        return L;
+    } else // caso o parametro tail tenha incorretamente recebido um atomo.       
+        return NULL;
 }
 
 void destruir_recursivo(ListaGen **Lista) {
