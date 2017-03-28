@@ -20,22 +20,23 @@ void Exibe_Atomo(ListaGen *Lista) {
     if (!isNula(Lista)) {
         if (isAtomo(Lista))
             printf("%s", Lista->no.info);
-    } else {
-        Exibe_Atomo(Head(Lista));
-        Exibe_Atomo(Tail(Lista));
+        else {
+            Exibe_Atomo(Head(Lista));
+            Exibe_Atomo(Tail(Lista));
+        }
     }
 };
 
-void Exibe(ListaGen *Lista){
-    
-    if(!isNula(Lista)){
-        if(isAtomo(Lista))
-            printf("%s",Lista->no.info);
-        else{
+void Exibe(ListaGen *Lista) {
+
+    if (!isNula(Lista)) {
+        if (isAtomo(Lista))
+            printf("%s", Lista->no.info);
+        else {
             printf("[");
-            while(!isNula(Lista)){
+            while (!isNula(Lista)) {
                 Lista = Tail(Lista);
-                if(!isNula(Lista))
+                if (!isNula(Lista))
                     printf(",");
             }
             printf("]");
