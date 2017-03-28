@@ -35,6 +35,7 @@ void Exibe(ListaGen *Lista) {
         else {
             printf("[");
             while (!isNula(Lista)) {
+                Exibe(Head(Lista));
                 Lista = Tail(Lista);
                 if (!isNula(Lista))
                     printf(",");
