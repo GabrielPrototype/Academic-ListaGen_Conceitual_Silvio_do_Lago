@@ -168,5 +168,19 @@ ListaGen *Duplica (ListaGen *Lista){
 	return Cons(Duplica(Head(Lista)),Duplica(Tail(Lista)));
 }
 
+
+char Compara(ListaGen *Lista, ListaGen *Lista2){
+	if(isNula(Lista) && isNula(Lista2))
+		return 1;
+	if(isNula(Lista) || isNula(Lista2))
+		return 0;
+	if(isAtomo(Lista) && isAtomo(Lista2))
+		return !strcmp(Lista->no.info,Lista2->no.info);
+	
+	if(isAtomo(Lista) || isAtomo(Lista2))
+		return 0;
+		
+	return Compara(Head(Lista),Head(Lista2)) && Compara(Tail(Lista),Tail(Lista2));
+}
 #endif /* LISTAGEN_S_LAGOS_H */
 

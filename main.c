@@ -90,5 +90,7 @@ void teste_listaGen(){
     printf("\n\n\n");
     
     printf("Profundidade: %d", calcula_profundidade(Lista02));
+    
+    Compara(Lista01,Lista02) ? printf("iguais") : printf("diferentes");
 
 }
