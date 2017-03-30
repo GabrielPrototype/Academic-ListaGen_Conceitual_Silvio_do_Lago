@@ -78,7 +78,7 @@ void teste_listaGen(){
     
     printf("\n\n\n");
     
-    Exibe(Lista02);
+    Exibe_iterativo(Lista02);
     
     printf("\n\n\n");
    

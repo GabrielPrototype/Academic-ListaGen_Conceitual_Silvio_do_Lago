@@ -45,6 +45,33 @@ void Exibe(ListaGen *Lista) {
     }
 };
 
+void Exibe_iterativo(ListaGen *L) {
+    Pilha *P;
+    init(&P);
+    Push(&P, L);
+    printf("[");
+    while (!isEmpty(P)) {
+        if (!isNula(L)) {
+            Pop(&P, &L);
+            while (!isNula(L) && !isAtomo(L)) {
+                Push(&P, L);
+                L = Head(L);
+                if (!isNula(L) && !isAtomo(L))
+                    printf("[");
+            }
+        }
+        if (!isNula(L) && isAtomo(L))
+            printf("%s", L->no.info);
 
+        Pop(&P, &L);
+        L = Tail(L);
+        if (!isNula(L)) {
+            printf(",");
+            Push(&P, L);
+        }
+        if (L == NULL)
+            printf("]");
+    }
+}
 #endif /* DISPLAY_LISTAGEN_S_LAGOS_H */
 
